@@ -12,3 +12,7 @@ def about(request):
 def services(request):
     # return HttpResponse("This is my First Django Homepage")
     return render(request, 'services.html')
+
+def login(request):
+    # return HttpResponse("This is my First Django Homepage")
+    return render(request, 'login.html')
