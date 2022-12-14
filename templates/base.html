@@ -16,7 +16,7 @@
       crossorigin="anonymous"
     />
 
-    <link rel="icon" type="image/x-icon" href="/static/django.ico">
+    <link rel="icon" type="image/x-icon" href="/static/django.ico" />
 
     <title>Django Website | {% block title %}{% endblock title %}</title>
   </head>
@@ -69,12 +69,14 @@
           <li class="nav-item">
             <a class="nav-link" href="/about">About Us</a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="/login">Log In</a>
+            <a class="nav-link" href="/logout" {% if request.path == '/login' %} style="display: none;" {% endif %}>Log Out</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/logout">Log Out</a>
-          </li>
+          <!-- <li class="nav-item">
+          <a class="nav-link" href="/login">Log In</a>
+        </li>  -->
+
         </ul>
       </div>
     </nav>
