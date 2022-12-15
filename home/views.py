@@ -26,10 +26,11 @@ def loginUser(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         # print("Username and Password is: " + username +" " + password)
-        user = authenticate(username=username, password=password)
-        if user is not None:
+        User = authenticate(username=username, password=password)
+        print("UserName and pass is :- " + username + " " + password)
+        if User is not None:
             # A backend authenticated the credentials
-            login(request, user)
+            login(request, User)
             return redirect("/")
         else:
             messages.error(request, 'Incorrect Credetentials')
@@ -39,3 +40,16 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
     return redirect("/login")
+
+def singupUser(request):
+    if request.method == "POST":
+        # print("POST Request Detected")
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        # print("Username and Password is: " + username +" " + password)
+        people = User.objects.create_user(username=username, password=password)
+        people.save()
+        messages.success(request, "User Added Succesfully")
+        return redirect("/login")
+
+    return render(request, 'signup.html')
